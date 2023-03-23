@@ -1,3 +1,4 @@
+import './css/header.sass';
+import './css/home.sass';
 import './css/style.sass';
-import {testConst} from "./js/scripts";
-console.log(testConst);
+import './js/scripts';
