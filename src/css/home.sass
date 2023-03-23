@@ -24,7 +24,11 @@
             .home-col--title
                 opacity: 0
             .home-categories
-                display: block
+                &--item
+                    opacity: 1
+                    -webkit-transform: translateY(0)
+                    -ms-transform: translateY(0)
+                    transform: translateY(0)
         &__bg
             position: absolute
             width: 100%
@@ -64,14 +68,26 @@
         top: 50%
         left: 50%
         transform: translate(-50%, -50%)
-        display: none
         &--list
             list-style: none
             padding-left: 0
             width: 100%
         &--item
+            opacity: 0
             margin: 10px auto
             position: relative
+            transform: translateY(40px)
+            -webkit-transform: translateY(40px)
+            -ms-transform: translateY(40px)
+            will-change: initial
+            -webkit-transition-delay: .1s
+            -o-transition-delay: .1s
+            transition-delay: .1s
+            -webkit-transition: opacity .2s ease,-webkit-transform .3s ease
+            transition: opacity .2s ease,-webkit-transform .3s ease
+            -o-transition: transform .3s ease,opacity .2s ease
+            transition: transform .3s ease,opacity .2s ease
+            transition: transform .3s ease,opacity .2s ease,-webkit-transform .3s ease
             .sm-image
                 position: absolute
                 opacity: 0
@@ -117,6 +133,22 @@
                         visibility: visible
                         opacity: 1
                         max-width: 100%
+            &:nth-child(2)
+                -webkit-transition-delay: .2s
+                -o-transition-delay: .2s
+                transition-delay: .2s
+            &:nth-child(3)
+                -webkit-transition-delay: .3s
+                -o-transition-delay: .3s
+                transition-delay: .3s
+            &:nth-child(4)
+                -webkit-transition-delay: .4s
+                -o-transition-delay: .4s
+                transition-delay: .4s
+            &:nth-child(5)
+                -webkit-transition-delay: .5s
+                -o-transition-delay: .5s
+                transition-delay: .5s
             &:nth-child(2n)
                 .sm-image
                     right: unset
