@@ -1,5 +1,24 @@
+@import "colors"
+.site
+  &-content
+    margin-top: 90px
+  &-overlay
+    display: none
+    position: fixed
+    top: 0
+    right: 0
+    left: 0
+    bottom: 0
+    background-color: $blackOpacity
+    z-index: 2
+    &__active
+      display: block
 .container
   display: flex
   width: 100%
   max-width: 1480px
   margin: 0 auto
+a
+  transition: all 0.3s
+.light-beige
+  color: $lightBeige

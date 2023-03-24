@@ -1,0 +1,66 @@
+@import "colors"
+.minicart
+  z-index: 3
+  position: fixed
+  width: 540px
+  top: 0
+  bottom: 0
+  right: -540px
+  background-color: $white
+  transition: all 0.3s
+  box-sizing: border-box
+  padding: 20px 32px 32px 32px
+  display: flex
+  flex-wrap: wrap
+  flex-direction: column
+  &__active
+    right: 0
+  &--button
+    position: relative
+    text-shadow: 0 0 2px $black
+  &--icon
+    padding-top: 10px
+    svg
+      margin-bottom: -5px
+  &--count
+    position: absolute
+    background-color: $beige
+    border-radius: 50%
+    display: inline-flex
+    height: 20px
+    width: 20px
+    align-items: center
+    justify-content: center
+    right: -12px
+    font-size: 12px
+    color: $white !important
+  &--toggler
+    svg
+      width: 26px
+      height: 26px
+      path
+        stroke: $darkBrown
+  &--header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    width: 100%
+    margin-bottom: 30px
+    font-size: 28px
+.woocommerce
+  &-mini
+   &-cart
+     padding-left: 0
+     margin-top: 0
+     list-style: none
+     overflow-y: auto
+     &-item
+       display: flex
+       width: 100%
+       align-items: center
+       .remove
+         display: none
+       .quantity
+         margin-left: auto
+     &__total
+       margin-top: auto

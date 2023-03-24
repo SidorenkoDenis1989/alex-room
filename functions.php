@@ -64,9 +64,24 @@ endif;
 add_action( 'wp_enqueue_scripts', 'twentytwentytwo_styles' );
 
 require_once get_template_directory() . '/templates/template-functions.php';
+require_once get_template_directory() . '/functions-woocommerce.php';
+
+register_nav_menus(
+    array(
+        'primary' 				=> esc_attr( 'Main menu' ),
+        'footer'  				=> esc_attr( 'Footer menu' ),
+    )
+);
+
+function is_home_template() {
+    return is_page_template('templates/home-page.php');
+}
 
 if ( function_exists( 'add_image_size' ) ) {
     add_image_size( 'home_category_thumb', 206, 272, true );
+    add_image_size( 'product_catalog_image', 328, 410, true );
+    add_image_size( 'product_page_image', 630, 840, true );
+    add_image_size( 'product_cart_image', 78, 100, true );
     add_image_size( 'home_half_screen_image', 960, 1080, true );
 }
 
