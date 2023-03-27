@@ -2,7 +2,6 @@
     wp_head();
     $is_home_template = is_home_template();
     $header_class = $is_home_template ? "header__home" : "";
-    $cart_count = WC()->cart->get_cart_contents_count();
 ?>
 <header id="header" <?php echo $header_class ? 'class="' . $header_class  .  '"' : ""; ?>>
     <div class="container">
@@ -37,21 +36,15 @@
                         <polygon stroke="currentColor" stroke-width="1.5" points="5.35714286 7.70535714 18.6428571 7.70535714 19.75 21.2678571 4.25 21.2678571"></polygon>
                       </g>
                     </svg>
-                    <span class="minicart--count"><?php echo $cart_count; ?></span>
+                    <span class="minicart--count">
+                        <?php require_once get_template_directory() . '/templates/template-parts/products-counter.php'; ?>
+                    </span>
                 </span>
             </a>
         </div>
     </div>
 </header>
-<div class="minicart">
-    <div class="minicart--header">
-        <span class="light-beige">Shopping cart (<?php echo $cart_count; ?>)</span>
-        <a href="#" class="minicart--toggler">
-            <svg aria-hidden="true" focusable="false" role="presentation" class="icon feather-x" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"></path></svg>
-        </a>
-    </div>
-    <?php woocommerce_mini_cart(); ?>
-</div>
+<?php require get_template_directory() . '/templates/template-parts/minicart-wrapper.php';?>
 <?php if(!$is_home_template): ?>
 <div class="site-content">
     <div class="container">

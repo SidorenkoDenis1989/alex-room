@@ -102,6 +102,7 @@ function alex_room_scripts() {
     wp_enqueue_style( 'alex_room_styles' );
 
     wp_register_script( 'alex_room_scripts', get_template_directory_uri() . '/dist/app.js', ["jquery"], '1.0', true );
+    wp_localize_script('alex_room_scripts', 'ajaxUrl', array('url' => admin_url('admin-ajax.php')));
     wp_enqueue_script( 'alex_room_scripts' );
 }
 add_action( 'wp_enqueue_scripts', 'alex_room_scripts' );

@@ -1,4 +1,5 @@
 @import "colors"
+@import "sizes"
 .minicart
   z-index: 3
   position: fixed
@@ -11,7 +12,6 @@
   box-sizing: border-box
   padding: 20px 32px 32px 32px
   display: flex
-  flex-wrap: wrap
   flex-direction: column
   &__active
     right: 0
@@ -45,8 +45,21 @@
     justify-content: space-between
     align-items: center
     width: 100%
-    margin-bottom: 30px
+    margin-bottom: $marginSize
     font-size: 28px
+  &--label
+    display: flex
+    align-items: center
+    padding: 15px $textSize 14px
+    border-radius: 3px
+    margin-bottom: $marginSize
+    background-color: $lightGreen
+    color: $green
+    font-size: $textSize
+    svg
+      width: 16px
+      height: 16px
+      margin-right: 12px
 .woocommerce
   &-mini
    &-cart
@@ -54,13 +67,102 @@
      margin-top: 0
      list-style: none
      overflow-y: auto
+     margin-bottom: 0
      &-item
        display: flex
        width: 100%
-       align-items: center
+       align-items: stretch
+       margin-bottom: 32px
+       &__info
+         display: flex
+         flex-wrap: wrap
+         align-items: flex-start
+         & > a
+           text-decoration: none
+           font-size: $textSize
+           font-weight: 600
+           width: 100%
+       &__attrs
+         width: 100%
+         ul
+           list-style: none
+           padding-left: 0
+           width: 100%
+           li
+             width: 100%
+             font-size: 14px
+       &__quantity
+         margin-top: auto
+         display: inline-flex
+         align-items: center
+         border: 1px solid $lightGrey
+         border-radius: 3px
+         font-size: $textSize
+         height: 38px
+         span
+           display: inline-flex
+           width: 35px
+           align-items: center
+           justify-content: center
+         a
+           text-decoration: none
+           svg
+             width: $textSize
+             height: $textSize
+           &.decrease
+            padding-left: 8px
+            padding-right: 3px
+           &.increase
+            padding-left: 3px
+            padding-right: 8px
        .remove
          display: none
-       .quantity
+       &__price
          margin-left: auto
+         font-size: $textSize
+         font-weight: 600
      &__total
-       margin-top: auto
+       color: $beige
+       font-size: 28px
+       display: flex
+       justify-content: space-between
+       font-weight: 400
+       box-sizing: border-box
+       border-top: 1px solid $lightGrey
+       width: calc(100% + 64px)
+       margin: auto -32px $smallMarginSize -32px
+       padding: 32px 32px 0 32px
+       strong
+         font-weight: 400
+     &__buttons
+      margin: 15px 0 0 0
+      .checkout
+        width: 100%
+        background-color: $lightOrange
+        border-radius: 3px
+        text-transform: uppercase
+        transition: all 0.3s
+        padding: 0
+        height: 48px
+        display: flex
+        align-items: center
+        justify-content: center
+        &:hover
+          background-color: $orange
+     .attachment-product_cart_image,
+     .woocommerce-placeholder
+       margin-right: $marginSize
+       border: 1px solid $lightGrey
+.order-note
+  &__title
+    color: $notesColor
+    font-size: $textSize
+  &__text
+    width: 100%
+    font-size: 17px
+    height: 98px
+    padding: 10px
+    box-sizing: border-box
+    display: none
+    margin-top: $smallMarginSize
+    border: 1px solid $lightGrey

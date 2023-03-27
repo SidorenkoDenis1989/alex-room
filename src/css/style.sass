@@ -22,3 +22,20 @@ a
   transition: all 0.3s
 .light-beige
   color: $lightBeige
+.loader
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: $whiteOpacity
+  display: none
+  svg
+    width: 100px
+    height: 100px
+    path
+      fill: $beige
+  &.active
+    display: flex
+    justify-content: center
+    align-items: center
