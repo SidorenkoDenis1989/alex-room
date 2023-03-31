@@ -1,0 +1,42 @@
+@import "colors"
+@import "sizes"
+.footer
+  background-color: $beige
+  padding-bottom: $smallMarginSize
+  box-sizing: border-box
+  .container
+    box-sizing: border-box
+    padding-top: $smallMarginSize
+  .social-media
+    &__list
+      list-style: none
+      display: inline-flex
+      padding-left: 0
+      li
+        margin-left: $marginSize
+      svg
+        path
+          fill: $white
+        &:hover
+          path
+            fill: $black
+  &--bottom-label
+    font-size: $textSmallSize
+    color: $white
+#footer
+  &-logo
+    margin-bottom: $smallMarginSize
+    img
+      height: 60px
+      width: auto
+  &--menu
+    &__list
+      padding-left: 0
+      list-style: none
+      li
+        margin-right: $marginSize
+      a
+        text-decoration: none
+        color: $white
+        &:hover
+          color: $black

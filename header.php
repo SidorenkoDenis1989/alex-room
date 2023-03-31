@@ -4,9 +4,9 @@
     $header_class = $is_home_template ? "header__home" : "";
 ?>
 <header id="header" <?php echo $header_class ? 'class="' . $header_class  .  '"' : ""; ?>>
-    <div class="container">
-        <div id="site-logo"><?php echo get_custom_logo(); ?></div>
-        <div id="main-menu">
+    <div class="container d-grid d-grid__column-3 align-items-center">
+        <div id="site-logo" class="d-flex align-items-center"><?php echo get_custom_logo(); ?></div>
+        <div id="main-menu" class="d-flex justify-content-center align-items-center">
             <?php if ( has_nav_menu( 'primary' ) ) : ?>
                 <ul id="main-menu__list">
                     <?php
@@ -25,7 +25,7 @@
                 </ul>
             <?php endif; ?>
         </div>
-        <div id="header__right-side">
+        <div id="header__right-side" class="d-flex justify-content-end align-items-center">
             <a href="#" class="login-button">Login</a>
             <a href="#" class="minicart--button">
                 <span class="minicart--icon">
