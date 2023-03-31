@@ -1,4 +1,5 @@
-import {DOMHandler} from "./dom-handler";
+import 'slick-carousel';
+import {DOMService} from "./dom-service.js";
 import {AsyncHandler} from "./async-functions";
 (function ($){
     document.addEventListener("DOMContentLoaded", function() {
@@ -22,14 +23,14 @@ import {AsyncHandler} from "./async-functions";
 
         document.querySelector(".minicart--button").addEventListener("click", event => {
             event.preventDefault();
-            DOMHandler.toggleMiniCart()
+            DOMService.toggleMiniCart()
         });
         document.querySelector(".minicart--toggler").addEventListener("click", event => {
             event.preventDefault();
-            DOMHandler.toggleMiniCart()
+            DOMService.toggleMiniCart()
         });
         document.querySelector(".site-overlay").addEventListener("click", () => {
-            DOMHandler.closeMiniCart();
+            DOMService.closeMiniCart();
         });
 
         document.querySelector(".order-note__title").addEventListener("click", event => {
@@ -62,6 +63,24 @@ import {AsyncHandler} from "./async-functions";
             }
             const cartItemKey = closestElement.dataset.cart_item_key;
             AsyncHandler.changeCartItemQty(cartItemKey, newValue);
+        });
+
+        $(".product--gallery").each(function(index, gallery) {
+            $(gallery).slick({
+                prevArrow: $(gallery).parent().find($('.gallery--button__prev')),
+                nextArrow: $(gallery).parent().find($('.gallery--button__next')),
+            });
+        });
+
+        const archiveProductLink = $('.woocommerce-loop-product__link');
+        archiveProductLink.on("click", e => {
+            if (e.target.nodeName === 'svg') {
+                e.preventDefault();
+            }
+
+        });
+        archiveProductLink.on("swipe", e => {
+                e.preventDefault();
         });
     });
 })(jQuery);

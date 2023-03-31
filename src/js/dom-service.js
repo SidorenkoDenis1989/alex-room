@@ -1,4 +1,4 @@
-export class DOMHandler {
+export class DOMService {
     static closeMiniCart() {
         document.querySelector(".minicart").classList.remove("minicart__active");
         document.querySelector(".site-overlay").classList.remove("site-overlay__active");

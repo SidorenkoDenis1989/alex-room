@@ -7,7 +7,7 @@
             array(
                 'parent' => $product_cat_id,
                 'orderby' => 'name',
-                'hide_empty' => false
+                'hide_empty' => true
             )
         ) : [];
 ?>

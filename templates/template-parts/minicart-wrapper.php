@@ -3,7 +3,7 @@
 ?>
 <div class="minicart">
     <div class="minicart--header">
-        <span class="light-beige">
+        <span class="title light-beige">
             Shopping cart (<?php require get_template_directory() . '/templates/template-parts/products-counter.php'; ?>)
         </span>
         <a href="#" class="minicart--toggler">

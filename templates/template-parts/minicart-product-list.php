@@ -44,7 +44,7 @@
                         echo wp_kses_post( $product_name );
                     else :
                         ?>
-                        <a href="<?php echo esc_url( $product_permalink ); ?>">
+                        <a class="bold" href="<?php echo esc_url( $product_permalink ); ?>">
                             <?php echo wp_kses_post( $product_name ); ?>
                         </a>
                     <?php
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <?php echo wc_get_formatted_cart_item_data( $cart_item ); ?>
-                <div class="woocommerce-mini-cart-item__price"><?php echo $product_price; ?></div>
+                <div class="woocommerce-mini-cart-item__price bold"><?php echo $product_price; ?></div>
             </li>
             <?php
         }

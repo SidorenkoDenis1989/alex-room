@@ -1,4 +1,4 @@
-import {DOMHandler} from "./dom-handler";
+import {DOMService} from "./dom-service.js";
 export class AsyncHandler {
     static async changeCartItemQty(cartItemKey, newValue) {
         document.querySelector('.minicart ').querySelector('.loader').classList.add("active");
@@ -12,7 +12,7 @@ export class AsyncHandler {
         }).then( response => {
             return response.json();
         }).then(data => {
-            DOMHandler.updateFragments(data.fragments)
+            DOMService.updateFragments(data.fragments)
             document.querySelector('.minicart ').querySelector('.loader').classList.remove("active");
         });
     }
