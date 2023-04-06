@@ -4,44 +4,50 @@
   width: 100%
   &-result
     &-count
+      font-size: $textSmallSize
       width: 100%
       text-align: center
-  ul.products
+ul.products
+  width: 100%
+  display: grid
+  gap: 50px 30px
+  grid-template-columns: repeat(4, 1fr)
+  justify-items: start
+  align-items: stretch
+  margin-bottom: $marginSize
+  padding-left: 0
+  list-style: none
+  li.product
+    margin: 0
+    padding: 0
     width: 100%
-    display: grid
-    gap: 50px 30px
-    grid-template-columns: repeat(4, 1fr)
-    justify-items: start
-    align-items: stretch
-    margin-bottom: $marginSize
-    li.product
-      margin: 0
-      padding: 0
-      width: 100%
+    position: relative
+    display: flex
+    flex-direction: column
+    a
       position: relative
-      display: flex
-      flex-direction: column
-      a
-        position: relative
-      .price
-        margin-bottom: 0
-        font-size: $textSmallSize
-        color: $textGrey
-        text-align: center
-        del
-          margin-right: 5px
-        ins
-          text-decoration: none
-      .woocommerce
-        &-loop
-          &-product
-            &__title
-              text-align: center
-              padding: 0
-              color: $textGrey
-              font-size: $textSmallSize
-    &:before
-      display: none
+      text-decoration: unset
+    .price
+      margin-bottom: 0
+      font-size: $textSmallSize
+      color: $textGrey
+      text-align: center
+      width: 100%
+      display: block
+      del
+        margin-right: 5px
+      ins
+        text-decoration: none
+    .woocommerce
+      &-loop
+        &-product
+          &__title
+            text-align: center
+            padding: 0
+            color: $textGrey
+            font-size: $textSmallSize
+  &:before
+    display: none
 .product
   &--thumbnail
     position: relative
@@ -52,6 +58,8 @@
       position: relative
       overflow: hidden
       margin-bottom: $smallMarginSize
+      list-style: none
+      padding-left: 0
       &:hover
         .product
           &--thumbnail
@@ -75,6 +83,8 @@
     align-items: stretch
     width: 100%
     position: relative
+    list-style: none
+    padding-left: 0
     .slick
       &-list
         width: 100%

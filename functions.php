@@ -81,6 +81,7 @@ if ( function_exists( 'add_image_size' ) ) {
     add_image_size( 'home_category_thumb', 206, 272, true );
     add_image_size( 'product_catalog_image', 328, 410, true );
     add_image_size( 'product_page_image', 630, 840, true );
+    add_image_size( 'product_page_image_small', 91, 128, true );
     add_image_size( 'product_cart_image', 78, 100, true );
     add_image_size( 'home_half_screen_image', 960, 1080, true );
 }

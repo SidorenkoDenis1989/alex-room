@@ -46,11 +46,6 @@
 </header>
 <?php require get_template_directory() . '/templates/template-parts/minicart-wrapper.php';?>
 <?php if(!$is_home_template): ?>
-<div class="breadcrumbs">
-    <div class="container">
-        <?php woocommerce_breadcrumb(); ?>
-    </div>
-</div>
 <div class="site-content">
     <div class="container">
 <?php endif; ?>

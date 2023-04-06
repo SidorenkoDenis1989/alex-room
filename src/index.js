@@ -5,4 +5,5 @@ import './css/footer.sass';
 import './css/home.sass';
 import './css/minicart.sass';
 import './css/product-archive.sass';
+import './css/single-product.sass';
 import './js/scripts';

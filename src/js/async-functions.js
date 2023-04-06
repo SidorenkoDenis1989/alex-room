@@ -16,4 +16,24 @@ export class AsyncHandler {
             document.querySelector('.minicart ').querySelector('.loader').classList.remove("active");
         });
     }
+
+    static async addToCart(productId, productQty, variation_id) {
+        //document.querySelector('.minicart ').querySelector('.loader').classList.add("active");
+        const formData = new FormData();
+        formData.append("action",'alex_room_add_to_cart');
+        formData.append("qty", productQty);
+        formData.append("product_id", productId);
+        formData.append("variation_id", variation_id);
+        return await fetch(ajaxUrl.url, {
+            method: "POST",
+            body: formData
+        }).then( response => {
+            return response.json();
+        }).then(data => {
+            DOMService.updateFragments(data.fragments)
+            document.querySelector('.minicart ').querySelector('.loader').classList.remove("active");
+            return data;
+        });
+    }
+
 }

@@ -1,0 +1,258 @@
+@import "colors"
+@import "sizes"
+div.product
+  display: flex
+  flex-wrap: wrap
+  position: relative
+  .onsale
+    position: absolute
+    left: calc(50% - 70px)
+    top: 10px
+    z-index: 3
+    background-color: $flashBackground
+    color: $brown
+    font-size: 14px
+    padding: 7px 14px
+    box-sizing: border-box
+.product
+  .summary
+    width: 50%
+    box-sizing: border-box
+    padding-left: 45px
+    max-width: 535px
+    .price
+      font-size: 28px
+      margin-bottom: 25px
+      ins
+        text-decoration: none
+    .quantity
+      input
+        text-align: center
+        width: 48px
+        padding: 0
+        height: 48px
+        font-size: $textSize
+        margin: 0 $smallMarginSize
+        border-radius: 3px
+        border: 1px solid $borderColor
+        -moz-appearance: textfield
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button
+          -webkit-appearance: none
+          margin: 0
+  &_title
+    font-family: 'Amiri', sans-serif
+    color: $productTitleColor
+    margin-top: 0
+    font-size: $titleSize
+    margin-bottom: 2*$smallMarginSize
+.woocommerce
+  &-product
+    &-gallery
+      width: 50%
+      overflow: hidden
+      .slick-track
+        display: flex
+  &-notices
+    &-wrapper
+      width: 100%
+  &-variation
+    &-price
+      font-size: 28px
+      margin-right: 25px
+      ins
+        text-decoration: none
+    &-availability
+      .in-stock
+        display: none
+      .out-of-stock
+        color: $addToCartButtonBG
+        margin: 0
+.single
+  &-product
+    &--gallery
+      width: 100%
+      padding: 0
+      list-style: none
+      display: flex
+      align-items: stretch
+      justify-content: flex-start
+      margin-top: 0
+      overflow: hidden
+      position: relative
+      z-index: 1
+      .slick
+        &-list
+          width: 100%
+        &-track
+          display: flex
+          align-items: stretch
+      &__slider
+        width: 100%
+        max-width: 630px
+        position: relative
+        .gallery
+          &--button
+            width: 44px
+            height: 44px
+            top: calc(50% - 22px)
+            svg
+              width: 32px
+              height: 32px
+      li
+        position: relative
+        &:after
+          position: relative
+          content: ""
+          display: block
+          width: 100%
+          padding-top: 133.33333334%
+        img
+          position: absolute
+          object-fit: cover
+          width: 100% !important
+          height: 100% !important
+          top: 50%
+          left: 50%
+          transform: translate(-50%, -50%)
+      &__large
+        margin-bottom: $mediumMarginSize
+        li
+          min-width: 100%
+      &__small
+        max-width: 630px
+        .slick
+          &-list
+            width: calc(100% + 6px)
+            margin-left: -3px
+            margin-right: -3px
+          &-slide
+            padding-left: 3px
+            padding-right: 3px
+        li
+          min-width: calc(100%/7 - 6px)
+          margin-right: 6px
+          cursor: pointer
+          img
+            &.lazyloading
+              opacity: 1
+      &__wrapper
+        position: relative
+        display: flex
+        flex-wrap: wrap
+        justify-content: flex-end
+        width: 50%
+    &--quantity
+      &__wrapper
+        display: flex
+        align-items: center
+        margin-bottom: $largeMarginSize
+        button
+          height: 48px
+          width: 48px
+          display: flex
+          align-items: center
+          justify-content: center
+          background-color: unset
+          border-radius: 3px
+          border: 1px solid $borderColor
+          outline: none
+          cursor: pointer
+  &_add_to_cart_button
+    width: 100%
+    height: 48px
+    background-color: $white
+    border-radius: 3px
+    border: 1px solid $addToCartButtonBG
+    color: $addToCartButtonBG
+    transition: all 0.3s
+    padding: 0
+    text-transform: uppercase
+    margin-bottom: $mediumMarginSize
+    &:hover
+      background-color: $addToCartButtonBG
+      color: $white
+  &_variation
+    display: flex
+    align-items: center
+    margin-bottom: 25px
+.variations
+  width: 100%
+  &--item
+    width: 100%
+    margin-bottom: $mediumMarginSize
+    &__label
+      margin-bottom: $smallMarginSize
+      font-family: 'Futura Bold', sans-serif
+      font-size: $textSize
+    &__value
+      position: relative
+      select
+        width: 100%
+        height: 48px
+        padding-left: 15px
+        padding-right: 40px
+        box-sizing: border-box
+        border: 1px solid $borderColor
+        border-radius: 3px
+        font-size: $textSize
+        -moz-appearance: none
+        -webkit-appearance: none
+        &::-ms-expand
+          display: none
+      svg
+        stroke: $black
+        position: absolute
+        right: 15px
+        top: 50%
+        transform: translateY(-50%)
+      option
+        font-size: $textSize
+.tabs
+  margin-top: 0
+  display: flex
+  margin-bottom: 0
+  align-items: center
+  list-style: none
+  padding-left: 0
+  li
+    border-top-left-radius: 3px
+    border-top-right-radius: 3px
+    padding: 8px 16px
+    border-right: 1px solid $borderColor
+    border-left: 1px solid $borderColor
+    border-top: 1px solid $borderColor
+    font-size: $textSize
+    background-color: $flashBackground
+    transition: all 0.3s
+    a
+      font-family: 'Amiri', serif
+      color: $grey
+      text-decoration: none
+    &.active
+      background-color: $white
+      position: relative
+      &:after
+        content: ''
+        display: block
+        height: 3px
+        position: absolute
+        top: calc(100% - 1px)
+        left: 0
+        right: 0
+        background-color: $white
+      a
+        color: $productTitleColor
+.woocommerce
+  &-Tabs
+    &-panel
+      border: 1px solid $borderColor
+      border-bottom-left-radius: 3px
+      border-bottom-right-radius: 3px
+      background-color: $white
+      box-sizing: border-box
+      padding: 16px
+      font-size: $textSize
+      font-family: 'Futura', sans-serif
+
+

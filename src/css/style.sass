@@ -21,15 +21,23 @@ h6
   font-weight: 600
 a
   transition: all 0.3s
-.breadcrumbs
+#primary
   margin-top: 105px
-  z-index: 1
-  a
-    color: $text
-    size: $textSmallSize
-    text-decoration: none
-    &:hover
-      color: $beige
+  width: 100%
+.woocommerce
+  &-breadcrumb
+    margin-bottom: 20px
+    z-index: 1
+    font-size: $textSmallSize
+    a
+      color: $text
+      size: $textSmallSize
+      text-decoration: none
+      &:hover
+        color: $beige
+  &-error
+    .button
+      display: none
 .site
   &-content
     position: relative

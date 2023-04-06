@@ -121,6 +121,20 @@
          margin-left: auto
          font-size: $textSize
          font-weight: 600
+         display: flex
+         flex-direction: column
+         justify-content: space-between
+         align-items: flex-end
+       &__remove
+         svg
+          width: 20px
+          height: auto
+          path
+            transition: all 0.3s
+            fill: $lightGrey
+          &:hover
+            path
+              fill: $lightBeige
      &__total
        color: $beige
        font-size: 28px
