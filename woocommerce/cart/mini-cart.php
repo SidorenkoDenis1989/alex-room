@@ -19,13 +19,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
-do_action( 'woocommerce_before_mini_cart' ); ?>
-
-<?php
-    if ( ! WC()->cart->is_empty() ) :
-        require get_template_directory() . '/templates/template-parts/minicart-product-list.php';
+do_action( 'woocommerce_before_mini_cart' );
+require get_template_directory() . '/templates/template-parts/minicart-product-list.php';
 ?>
-
 	<p class="woocommerce-mini-cart__total total">
 		<?php
 		/**
@@ -41,12 +37,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 
 	<p class="woocommerce-mini-cart__buttons buttons"><?php do_action( 'woocommerce_widget_shopping_cart_buttons' ); ?></p>
 
-	<?php do_action( 'woocommerce_widget_shopping_cart_after_buttons' ); ?>
-
-<?php else : ?>
-
-	<p class="woocommerce-mini-cart__empty-message"><?php esc_html_e( 'No products in the cart.', 'woocommerce' ); ?></p>
-
-<?php endif; ?>
-
-<?php do_action( 'woocommerce_after_mini_cart' ); ?>
+<?php
+    do_action( 'woocommerce_widget_shopping_cart_after_buttons' );
+    do_action( 'woocommerce_after_mini_cart' );
+?>

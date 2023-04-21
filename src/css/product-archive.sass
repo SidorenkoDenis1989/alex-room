@@ -1,5 +1,6 @@
 @import "sizes"
 @import "colors"
+@import "breakpoints"
 .woocommerce
   width: 100%
   &-result
@@ -13,10 +14,13 @@ ul.products
   gap: 50px 30px
   grid-template-columns: repeat(4, 1fr)
   justify-items: start
-  align-items: stretch
   margin-bottom: $marginSize
   padding-left: 0
   list-style: none
+  @media screen and (max-width: $tabletScreenSmall)
+    grid-template-columns: repeat(2, 1fr)
+  @media screen and (max-width: $phoneScreen)
+    grid-template-columns: repeat(1 , 1fr)
   li.product
     margin: 0
     padding: 0
@@ -53,7 +57,7 @@ ul.products
     position: relative
     z-index: 2
     width: 100%
-    padding-top: 125%
+    padding-top: 100%
     &__wrapper
       position: relative
       overflow: hidden
@@ -80,7 +84,6 @@ ul.products
         transform: translate(-50%, -50%)
   &--gallery
     display: flex
-    align-items: stretch
     width: 100%
     position: relative
     list-style: none
@@ -90,7 +93,6 @@ ul.products
         width: 100%
       &-track
         display: flex
-        align-items: stretch
     &__wrapper
       display: flex
       position: absolute
@@ -103,7 +105,7 @@ ul.products
     &__item
       min-width: 100%
       max-width: 100%
-      padding-top: 125%
+      padding-top: 100%
       position: relative
 .gallery
   &--button

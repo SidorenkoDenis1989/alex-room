@@ -9,10 +9,18 @@ remove_action( 'woocommerce_widget_shopping_cart_buttons', 'woocommerce_widget_s
 add_action( 'template_redirect', 'cart2checkout_redirect' );
 function cart2checkout_redirect() {
     if ( is_cart() ) {
-//        $cart_qty = WC()->cart->get_cart_contents_count();
-//        $redirect_url = $cart_qty ? wc_get_checkout_url() : get_home_url();
-//        wp_redirect( $redirect_url );
-//        die;
+        $cart_qty = WC()->cart->get_cart_contents_count();
+        $redirect_url = $cart_qty ? wc_get_checkout_url() : get_home_url();
+        wp_redirect( $redirect_url );
+        die;
+    }
+    if ( is_account_page() && !is_user_logged_in() ) {
+        global $wp;
+        $request = explode( '/', $wp->request );
+        if ( end($request) == 'my-account') {
+            wp_redirect( "/login" );
+            die;
+        }
     }
     if (is_product()) {
         $product_id = get_the_ID();
@@ -61,22 +69,26 @@ function change_cart_item_qty_handler() {
 add_action('wp_ajax_alex_room_add_to_cart', 'alex_room_add_to_cart_handler');
 add_action('wp_ajax_nopriv_alex_room_add_to_cart', 'alex_room_add_to_cart_handler');
 function alex_room_add_to_cart_handler() {
-    if(isset($_POST['product_id']) && isset($_POST['qty']) && isset($_POST['variation_id'])) {
-        $product_id = $_POST['product_id'];
-        $variation_id = $_POST['variation_id'];
-        $qty = $_POST['qty'];
-        WC()->cart->add_to_cart($product_id, $qty, $variation_id);
-
-        wp_send_json(array(
-                'fragments' => WC_AJAX:: get_refreshed_fragments(),
-            )
-        );
-    } else {
+    if(!isset($_POST['product_id']) || !isset($_POST['qty']) || !isset($_POST['variation_id'])){
         wp_send_json(array(
                 'success' => false,
             )
         );
     }
+
+    $product_id = $_POST['product_id'];
+    $variation_id = $_POST['variation_id'];
+    $qty = $_POST['qty'];
+    $passed_validation = apply_filters('woocommerce_add_to_cart_validation', true, $product_id, $qty);
+    $product_status = get_post_status($product_id);
+    if ($passed_validation && 'publish' === $product_status) {
+        WC()->cart->add_to_cart($product_id, $qty, $variation_id);
+    }
+
+    wp_send_json(array(
+            'fragments' => WC_AJAX:: get_refreshed_fragments(),
+        )
+    );
 }
 
 add_filter('woocommerce_add_to_cart_fragments', 'minicart_fragments');
@@ -108,6 +120,11 @@ function minicart_fragments( $fragments ) {
     $fragments['div.woocommerce-notices-wrapper'] = ob_get_clean();
     ob_end_clean();
 
+    ob_start();
+    include get_template_directory() . '/woocommerce/checkout/review-order.php';
+    $fragments['div.woocommerce-checkout-review-order-table'] = ob_get_clean();
+    ob_end_clean();
+
     return $fragments;
 }
 
@@ -119,6 +136,7 @@ add_action('init', function(){
     remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
     remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);
     remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
+    remove_action( 'woocommerce_before_checkout_form', 'woocommerce_output_all_notices', 10);
     add_filter( 'woocommerce_product_description_heading', '__return_false', 99 );
     add_filter( 'woocommerce_product_additional_information_heading', '__return_false', 99 );
     add_filter('woocommerce_reset_variations_link', '__return_empty_string');
@@ -142,6 +160,13 @@ add_action('init', function(){
     add_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_data_tabs', 40 );
 
     add_filter( 'woocommerce_product_tabs', 'alexroom_remove_tabs', 98 );
+
+    remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
+    add_action( 'woocommerce_checkout_after_customer_details', 'woocommerce_checkout_payment', 10 );
+
+    remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
+    add_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_checkout_coupon_form', 10 );
+    add_action( 'woocommerce_review_order_before_cart_contents', 'woocommerce_checkout_order_review_mobile_title', 10 );
 });
 
 function woocommerce_template_loop_product_thumbnail() {
@@ -328,4 +353,71 @@ function alexroom_remove_tabs($tabs) {
     unset( $tabs['additional_information'] );
     unset( $tabs['reviews'] );
     return $tabs;
+}
+
+add_action('wp_ajax_alex_room_set_coupon', 'alex_room_set_coupon_handler');
+add_action('wp_ajax_nopriv_alex_room_set_coupon', 'alex_room_set_coupon_handler');
+function alex_room_set_coupon_handler() {
+    if(isset($_POST['coupon_code'])) {
+        $coupon_code = $_POST['coupon_code'];
+        WC()->cart->apply_coupon( $coupon_code );
+
+        wp_send_json(array(
+                'fragments' => WC_AJAX:: get_refreshed_fragments(),
+            )
+        );
+    } else {
+        wp_send_json(array(
+                'success' => false,
+            )
+        );
+    }
+}
+
+add_action('wp_ajax_alex_room_remove_coupon', 'alex_room_remove_coupon_handler');
+add_action('wp_ajax_nopriv_alex_room_remove_coupon', 'alex_room_remove_coupon_handler');
+function alex_room_remove_coupon_handler() {
+    WC()->cart->remove_coupons();
+    WC()->cart->calculate_totals();
+
+    wp_send_json(array(
+            'fragments' => WC_AJAX:: get_refreshed_fragments(),
+        )
+    );
+}
+
+add_filter( 'woocommerce_cart_totals_coupon_html', 'alexroom_woocommerce_coupon_html_filter', 10, 3 );
+function alexroom_woocommerce_coupon_html_filter( $coupon_html, $coupon, $discount_amount_html ){
+    $coupon_html = $discount_amount_html . ' <a href="#" class="alexroom--remove-coupon">' . __( '[Remove]', 'woocommerce' ) . '</a>';
+    return $coupon_html;
+}
+
+
+add_filter( 'woocommerce_checkout_fields' , 'remove_company_name' );
+function remove_company_name( $fields ) {
+    unset($fields['billing']['billing_company']);
+    return $fields;
+}
+
+    
+
+add_filter('woocommerce_get_breadcrumb', function ($crumbs) {
+    if (is_singular("product") || is_product_category()) {
+        array_splice($crumbs,1, 1);
+    }
+    return $crumbs;
+});
+
+add_filter('woocommerce_account_menu_items', 'remove_my_account_tabs', 999);
+function remove_my_account_tabs($items) {
+    unset($items['dashboard']);
+    unset($items['downloads']);
+    unset($items['subscriptions']);
+    return $items;
+}
+function woocommerce_checkout_order_review_mobile_title() {
+    echo '<h3 class="woocommerce-checkout-review-order-title">';
+    echo '<span>' . __('Show order summary', 'woocommerce') . '</span>';
+    echo '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" role="img" class="a8x1wuo _1fragem14 _1fragem30 _1fragem9e _1fragem9d" focusable="false" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m11.9 5.6-4.653 4.653a.35.35 0 0 1-.495 0L2.1 5.6"></path></svg>';
+    echo '</h3>';
 }

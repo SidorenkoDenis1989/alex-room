@@ -1,5 +1,6 @@
 @import "colors"
 @import "fonts"
+@import "breakpoints"
 header
   position: fixed
   width: 100%
@@ -11,12 +12,18 @@ header
   left: 0
   background-color: $white
   border-bottom: 1px solid $lightGrey
+  @media screen and (max-width: $tabletScreenSmall)
+    height: 70px
   &.header__home
     background-color: unset
     border-bottom: none
+    @media screen and (max-width: $tabletScreenSmall)
+      border-bottom: 1px solid $lightGrey
     a
       color: $white
       text-shadow: 0 0 2px $black
+      @media screen and (max-width: $tabletScreenSmall)
+        color: $black
     .login-button
       color: $white
       border: 2px solid $white
@@ -33,10 +40,18 @@ header
       color: $lightBeige
   #site-logo
     width: 60px
+    @media screen and (max-width: $tabletScreenSmall)
+      justify-content: center
+      width: 100%
     img
       width: 100%
       height: auto
+      @media screen and (max-width: $tabletScreenSmall)
+        height: 60px
+        width: auto
   #main-menu
+    @media screen and (max-width: $tabletScreenSmall)
+      display: none
     &__list
       list-style: none
       margin: 0
@@ -53,7 +68,15 @@ header
     display: inline-flex
     line-height: 1
     border: 2px solid $black
+    @media screen and (max-width: $tabletScreenSmall)
+      display: none
     &:hover
       color: $white
       background-color: $beige
       border: 2px solid $beige
+.mobile
+  &-menu
+    &--button
+      display: none
+      @media screen and (max-width: $tabletScreenSmall)
+        display: block

@@ -1,5 +1,6 @@
 @import "colors"
 @import "sizes"
+@import "breakpoints"
 .minicart
   z-index: 10
   position: fixed
@@ -13,6 +14,10 @@
   padding: 20px 32px 32px 32px
   display: flex
   flex-direction: column
+  @media screen and (max-width: $tabletScreenSmall)
+    width: 100%
+    right: -100%
+    padding: 20px 15px 20px 15px
   &__active
     right: 0
   &--button
@@ -48,6 +53,8 @@
     margin-bottom: $marginSize
     font-size: 28px
     font-family: "Amiri", serif
+    @media screen and (max-width: $tabletScreenSmall)
+      margin-bottom: $smallMarginSize*1.5
   &--label
     display: flex
     align-items: center
@@ -57,6 +64,8 @@
     background-color: $lightGreen
     color: $green
     font-size: $textSize
+    @media screen and (max-width: $tabletScreenSmall)
+      margin-bottom: $smallMarginSize*1.5
     svg
       width: 16px
       height: 16px
@@ -73,7 +82,9 @@
        display: flex
        width: 100%
        align-items: stretch
-       margin-bottom: 32px
+       margin-bottom: $marginSize
+       @media screen and (max-width: $tabletScreenSmall)
+        margin-bottom: $smallMarginSize*1.5
        &__info
          display: flex
          flex-wrap: wrap
@@ -146,6 +157,10 @@
        width: calc(100% + 64px)
        margin: auto -32px $smallMarginSize -32px
        padding: 32px 32px 0 32px
+       @media screen and (max-width: $tabletScreenSmall)
+         width: calc(100% + #{$smallMarginSize * 3})
+         margin: auto (-$smallMarginSize * 1.5) ($smallMarginSize * 1.5) (-$smallMarginSize * 1.5)
+         padding: ($smallMarginSize * 1.5) ($smallMarginSize * 1.5) 0 ($smallMarginSize * 1.5)
        strong
          font-weight: 400
      &__buttons

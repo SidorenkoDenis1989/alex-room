@@ -25,9 +25,6 @@
                     $thumb_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
             ?>
                 <li class="home-categories--item">
-                    <!--<svg viewBox="0 0 294 130" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3 65C3 30.7583 30.7583 3 65 3H229C263.242 3 291 30.7583 291 65V65C291 99.2417 263.242 127 229 127H65C30.7584 127 3 99.2417 3 65V65Z"></path>
-                    </svg>-->
                     <?php if($thumb_id): ?>
                     <div class="sm-image">
                         <div class="sticker">
