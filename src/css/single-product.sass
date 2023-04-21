@@ -1,5 +1,6 @@
 @import "colors"
 @import "sizes"
+@import "breakpoints"
 div.product
   display: flex
   flex-wrap: wrap
@@ -14,15 +15,23 @@ div.product
     font-size: 14px
     padding: 7px 14px
     box-sizing: border-box
+    @media screen and (max-width: $tabletScreenSmall)
+      left: calc(100% - 70px)
 .product
   .summary
     width: 50%
     box-sizing: border-box
     padding-left: 45px
     max-width: 535px
+    @media screen and (max-width: $tabletScreenSmall)
+      padding-left: 0
+      width: 100%
+      max-width: 100%
     .price
-      font-size: 28px
-      margin-bottom: 25px
+      font-size: $subTitleSize
+      margin-bottom: $smallMarginSize * 2.5
+      @media screen and (max-width: $tabletScreenSmall)
+        font-size: $subTitleSizeMobile
       ins
         text-decoration: none
     .quantity
@@ -46,6 +55,8 @@ div.product
     margin-top: 0
     font-size: $titleSize
     margin-bottom: 2*$smallMarginSize
+    @media screen and (max-width: $tabletScreenSmall)
+      font-size: $titleSizeMobile
 .woocommerce
   &-product
     &-gallery
@@ -58,8 +69,11 @@ div.product
       width: 100%
   &-variation
     &-price
-      font-size: 28px
+      font-size: $subTitleSize
       margin-right: 25px
+      @media screen and (max-width: $tabletScreenSmall)
+        font-size: $subTitleSizeMobile
+        margin-right: $smallMarginSize * 1.5
       ins
         text-decoration: none
     &-availability
@@ -75,7 +89,7 @@ div.product
       padding: 0
       list-style: none
       display: flex
-      align-items: stretch
+      align-items: flex-start
       justify-content: flex-start
       margin-top: 0
       overflow: hidden
@@ -86,11 +100,13 @@ div.product
           width: 100%
         &-track
           display: flex
-          align-items: stretch
+          align-items: flex-start
       &__slider
         width: 100%
         max-width: 630px
         position: relative
+        @media screen and (max-width: $tabletScreenSmall)
+          max-width: 100%
         .gallery
           &--button
             width: 44px
@@ -101,26 +117,19 @@ div.product
               height: 32px
       li
         position: relative
-        &:after
-          position: relative
-          content: ""
-          display: block
-          width: 100%
-          padding-top: 133.33333334%
-        img
-          position: absolute
-          object-fit: cover
-          width: 100% !important
-          height: 100% !important
-          top: 50%
-          left: 50%
-          transform: translate(-50%, -50%)
       &__large
         margin-bottom: $mediumMarginSize
         li
           min-width: 100%
+          img
+            position: relative
+            width: 100% !important
+            height: auto !important
       &__small
         max-width: 630px
+        @media screen and (max-width: $tabletScreenSmall)
+          max-width: 100%
+          margin-bottom: 0
         .slick
           &-list
             width: calc(100% + 6px)
@@ -133,7 +142,20 @@ div.product
           min-width: calc(100%/7 - 6px)
           margin-right: 6px
           cursor: pointer
+          &:after
+            position: relative
+            content: ""
+            display: block
+            width: 100%
+            padding-top: 100%
           img
+            position: absolute
+            object-fit: cover
+            width: 100% !important
+            height: 100% !important
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
             &.lazyloading
               opacity: 1
       &__wrapper
@@ -142,6 +164,9 @@ div.product
         flex-wrap: wrap
         justify-content: flex-end
         width: 50%
+        @media screen and (max-width: $tabletScreenSmall)
+          width: 100%
+          margin-bottom: $marginSize
     &--quantity
       &__wrapper
         display: flex
@@ -169,6 +194,8 @@ div.product
     padding: 0
     text-transform: uppercase
     margin-bottom: $mediumMarginSize
+    &.wc-variation-is-unavailable
+      pointer-events: none
     &:hover
       background-color: $addToCartButtonBG
       color: $white

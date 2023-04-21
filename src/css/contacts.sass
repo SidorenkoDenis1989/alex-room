@@ -1,0 +1,32 @@
+@import "colors"
+@import "sizes"
+@import "breakpoints"
+.contacts
+  column-gap: 50px
+  @media screen and (max-width: $tabletScreen)
+    column-gap: 0
+  .wpcf7,
+  form
+    width: 100%
+  h1
+    color: $productTitleColor
+    font-size: $titleSize
+    margin-top: 0
+    margin-bottom: $mediumMarginSize
+  & > p
+    margin-bottom: $mediumMarginSize
+    font-size: $textSize
+  &--column
+    width: calc(50% - 25px)
+    display: flex
+    align-items: flex-start
+    @media screen and (max-width: $tabletScreen)
+      width: 100%
+    &:last-child
+      flex-direction: column
+      justify-content: center
+    img
+      width: 100%
+      height: auto
+      @media screen and (max-width: $tabletScreen)
+        margin-bottom: $marginSize

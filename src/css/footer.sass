@@ -1,8 +1,8 @@
 @import "colors"
 @import "sizes"
+@import "breakpoints"
 .footer
   background-color: $beige
-  padding-bottom: $smallMarginSize
   box-sizing: border-box
   .container
     box-sizing: border-box
@@ -12,8 +12,17 @@
       list-style: none
       display: inline-flex
       padding-left: 0
+      @media screen and (max-width: $tabletScreenSmall)
+        display: flex
+        justify-content: center
+        width: 100%
+        margin-top: 0
+        margin-bottom: $smallMarginSize
       li
         margin-left: $marginSize
+        @media screen and (max-width: $tabletScreenSmall)
+          margin-left: $smallMarginSize
+          margin-right: $smallMarginSize
       svg
         path
           fill: $white
@@ -26,15 +35,30 @@
 #footer
   &-logo
     margin-bottom: $smallMarginSize
+    @media screen and (max-width: $tabletScreenSmall)
+      order: 1
     img
       height: 60px
       width: auto
   &--menu
+    @media screen and (max-width: $tabletScreenSmall)
+      width: 100%
     &__list
       padding-left: 0
       list-style: none
+      @media screen and (max-width: $tabletScreenSmall)
+        display: flex
+        justify-content: center
+        width: 100%
+        flex-wrap: wrap
+        margin-top: 0
+        margin-bottom: $smallMarginSize
       li
         margin-right: $marginSize
+        @media screen and (max-width: $tabletScreenSmall)
+          width: 100%
+          text-align: center
+          margin-right: 0
       a
         text-decoration: none
         color: $white

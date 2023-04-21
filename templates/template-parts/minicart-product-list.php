@@ -1,5 +1,7 @@
 <ul class="woocommerce-mini-cart cart_list product_list_widget <?php echo esc_attr( $args['list_class'] ); ?>">
-    <?php
+<?php if (WC()->cart->is_empty()): ?>
+    <li><p class="woocommerce-mini-cart__empty-message"><?php esc_html_e( 'No products in the cart.', 'woocommerce' ); ?></p></li>
+<?php else:
     do_action( 'woocommerce_before_mini_cart_contents' );
 
     foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
@@ -55,7 +57,7 @@
                         <div class="woocommerce-mini-cart-item__attrs">
                             <ul>
                                 <?php foreach ($product_attrs as $attr_key => $attr_value): ?>
-                                    <li>Select <?php echo wc_attribute_label($attr_key); ?>: <?php echo $attr_value; ?></li>
+                                    <li><?php echo __("Select", "woocommerce") . " " . wc_attribute_label($attr_key); ?>: <?php echo $attr_value; ?></li>
                                 <?php endforeach; ?>
                             </ul>
                         </div>
@@ -104,5 +106,6 @@
     }
 
     do_action( 'woocommerce_mini_cart_contents' );
-    ?>
+    endif;
+?>
 </ul>

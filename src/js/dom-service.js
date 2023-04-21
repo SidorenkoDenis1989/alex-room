@@ -1,3 +1,5 @@
+import {CHECKOUT_ORDER_REVIEW_TITLE, OPENED_CHECKOUT_ORDER_REVIEW_TITLE} from "./text-constant";
+
 export class DOMService {
     static closeMiniCart() {
         document.querySelector(".minicart").classList.remove("minicart__active");
@@ -22,5 +24,19 @@ export class DOMService {
                 }
             });
         });
+    }
+
+    static scrollPageTop() {
+        document.querySelector("body").scrollTop = 0;
+    }
+
+    static closeOrderReview() {
+        this.scrollPageTop();
+        const reviewOrderTitle = document.querySelector(".woocommerce-checkout-review-order-title");
+        reviewOrderTitle.classList.remove("woocommerce-checkout-review-order-title__opened");
+        reviewOrderTitle.querySelector('span').textContent = CHECKOUT_ORDER_REVIEW_TITLE;
+        if (document.body.clientWidth < 921) {
+            document.querySelector(".checkout--products-list").style.display = "none";
+        }
     }
 }

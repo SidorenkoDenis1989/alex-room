@@ -1,11 +1,15 @@
-<?php if(!is_home_template()): ?>
+<?php
+    $is_home_template = is_home_template();
+    $is_checkout = is_checkout() && empty( is_wc_endpoint_url('order-received') );
+    if(!$is_home_template): ?>
     </div>
 </div>
 <?php endif; ?>
     <div class="site-overlay"></div>
-<?php if(!is_home_template()): ?>
+<?php
+    if(!$is_home_template && !$is_checkout): ?>
     <footer id="footer" class="footer">
-        <div class="container d-grid d-grid__column-3 align-items-center">
+        <div class="container d-grid d-grid__column-3 d-grid__column-tss-1 align-items-center">
             <div class="footer--menu d-flex align-items-center align-items-center">
                 <?php if ( has_nav_menu( 'footer' ) ) : ?>
                     <ul id="footer--menu__list" class="d-flex align-items-center">

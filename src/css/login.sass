@@ -1,0 +1,78 @@
+@import "colors"
+@import "sizes"
+#customer_login,
+.lost_reset_password
+  width: 100%
+  max-width: 480px
+  margin: 0 auto
+  input[type="text"],
+  input[type="email"],
+  input[type="password"]
+    width: 100%
+  .col-2
+    display: none
+  form
+    button
+      background-color: $addToCartButtonBG
+      border: 1px solid $addToCartButtonBG
+  h2
+    color: $beige
+    font-size: $subTitleSize
+    margin-top: 0
+    margin-bottom: $marginSize
+.woocommerce
+  &-LostPassword
+    display: flex
+    justify-content: space-between
+  .lost_reset_password,
+  .edit-account
+    fieldset
+      margin-bottom: 24px
+    .form-row
+      width: 100%
+      margin-bottom: 24px
+    button
+      background-color: $addToCartButtonBG
+      border: 1px solid $addToCartButtonBG
+      color: $white
+      font-weight: 400
+      &:hover
+        background-color: $white
+        color:   $addToCartButtonBG
+  &-MyAccount
+    &-navigation
+      ul
+        list-style: none
+        display: flex
+        gap: $mediumMarginSize
+        padding-left: 0
+        li
+          a
+            height: 48px
+            padding: 0 $marginSize
+            display: inline-flex
+            align-items: center
+            text-decoration: none
+            background-color: $white
+            border: 1px solid $addToCartButtonBG
+            border-radius: 3px
+            color: $addToCartButtonBG
+            &:hover
+              background-color: $addToCartButtonBG
+              color: $white
+          &.is-active
+            a
+              background-color: $addToCartButtonBG
+              color: $white
+    &-content
+      a
+        &.button
+          border: 1px solid $addToCartButtonBG
+          background-color: $white
+          color: $addToCartButtonBG
+          font-weight: 400
+          &:hover
+            color: $white
+            background-color: $addToCartButtonBG
+
+

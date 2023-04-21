@@ -77,11 +77,18 @@ function is_home_template() {
     return is_page_template('templates/home-page.php');
 }
 
+add_action( 'wp_head', 'add_viewport_meta_tag' , '1' );
+
+function add_viewport_meta_tag() {
+    echo '<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">';
+}
+
 if ( function_exists( 'add_image_size' ) ) {
     add_image_size( 'home_category_thumb', 206, 272, true );
     add_image_size( 'product_catalog_image', 328, 410, true );
     add_image_size( 'product_page_image', 630, 840, true );
     add_image_size( 'product_page_image_small', 91, 128, true );
+    add_image_size( 'checkout_image_small', 62, 62, true );
     add_image_size( 'product_cart_image', 78, 100, true );
     add_image_size( 'home_half_screen_image', 960, 1080, true );
 }
@@ -97,12 +104,13 @@ if( function_exists('acf_add_options_page') ) {
 }
 
 add_theme_support( 'custom-logo' );
+add_filter( 'wpcf7_autop_or_not', '__return_false' );
 
 function alex_room_scripts() {
     wp_register_style( 'alex_room_styles', get_template_directory_uri() . '/dist/app.css', false, '1.0' );
     wp_enqueue_style( 'alex_room_styles' );
 
-    wp_register_script( 'alex_room_scripts', get_template_directory_uri() . '/dist/app.js', ["jquery"], '1.0', true );
+    wp_register_script( 'alex_room_scripts', get_template_directory_uri() . '/dist/app.js', ["jquery" , "select2"], '1.0', true );
     wp_localize_script('alex_room_scripts', 'ajaxUrl', array('url' => admin_url('admin-ajax.php')));
     wp_enqueue_script( 'alex_room_scripts' );
 }
@@ -134,3 +142,14 @@ function get_img_html_code($image_id, $thumbnail_slug = 'full', $classes = array
     }
     return '<img class="' . implode(' ', $classes) . '" src="' . $img_url . '" alt="' . $img_alt . '" width="' . $img_width . '" height="' . $img_height . '">';
 }
+
+function ace__add_text_out_of_stock_variations() {
+    wp_add_inline_script( 'wc-add-to-cart-variation', "
+		jQuery('.variations_form').on('woocommerce_update_variation_values', function() {
+			jQuery(this).find('option:disabled').text(function(i, v) {
+				return v.replace(outOfStockText, '') + ' ' + outOfStockText
+			})
+		})
+	" );
+}
+add_action( 'wp_enqueue_scripts', 'ace__add_text_out_of_stock_variations' );

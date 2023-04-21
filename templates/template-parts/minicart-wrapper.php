@@ -17,7 +17,9 @@
         </svg>
         <?php echo $mini_cart_label; ?>
     </div>
-    <?php endif; ?>
-    <?php woocommerce_mini_cart(); ?>
-    <?php require get_template_directory() . '/templates/template-parts/loader.php'; ?>
+    <?php
+        endif;
+        woocommerce_mini_cart();
+        require get_template_directory() . '/templates/template-parts/loader.php';
+    ?>
 </div>
