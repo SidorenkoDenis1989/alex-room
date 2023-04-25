@@ -45,6 +45,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 			</p>
 
 			<?php do_action( 'woocommerce_login_form' ); ?>
+            <?php echo do_shortcode('[TheChamp-Login title="Login with your Google Account"]'); ?>
 
 			<p class="form-row">
 				<label class="woocommerce-form__label woocommerce-form__label-for-checkbox woocommerce-form-login__rememberme">
