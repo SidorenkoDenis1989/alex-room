@@ -12,10 +12,31 @@ h6
   font-weight: 400
   color: $text
   margin-top: 0
+body
+  overflow-x: hidden
+.full-width--banner
+  width: 100vw
+  margin-left: calc(620px - 50vw)
+  margin-right: calc(620px - 50vw)
+  @media screen and (max-width: $largeScreen)
+    margin-left: calc(#{$containerSizeM}/2 - 50vw)
+    margin-right: calc(#{$containerSizeM}/2 - 50vw)
+  @media screen and (max-width: $mediumScreen)
+    margin-left: calc(calc(100vw - #{$marginSize})/2 - 50vw)
+    margin-right: calc(calc(100vw - #{$marginSize})/2 - 50vw)
+  img
+    width: 100%
+    height: auto
+h1,
 h2
   color: $beige
-  font-size: $subTitleSize
   margin-bottom: $marginSize
+h1
+  font-size: $titleSize
+  @media screen and (max-width: $tabletScreenSmall)
+    font-size: $titleSizeMobile
+h2
+  font-size: $subTitleSize
 p
   margin-top: 0
 input[type="text"],
@@ -89,8 +110,6 @@ a
   transition: all 0.3s
 #primary
   width: 100%
-  @media screen and (max-width: $tabletScreenSmall)
-    margin-top: 90px
 .woocommerce
   &-breadcrumb
     margin-bottom: $mediumMarginSize
@@ -122,6 +141,10 @@ a
     box-sizing: border-box
     @media screen and (max-width: $tabletScreen)
       padding-top: 90px
+    &--about-me
+      padding-top: 90px
+      @media screen and (max-width: $tabletScreen)
+        padding-top: 70px
   &-overlay
     display: none
     position: fixed
@@ -133,7 +156,6 @@ a
     z-index: 9
     &__active
       display: block
-
 a
   transition: all 0.3s
 .light-beige
@@ -183,3 +205,29 @@ a
       margin: 0
       font-size: $textSmallSize
       border-radius: 3px
+.sidebar--toggler
+  svg
+    width: 26px
+    height: 26px
+    path
+      stroke: $darkBrown
+#custom-order-button
+  position: fixed
+  text-decoration: none
+  border-radius: 65px
+  color: $white
+  background-color: $addToCartButtonBG
+  font-size: $textSize
+  padding: $smallMarginSize $marginSize
+  bottom: 50px
+  right: 50px
+  box-shadow: 0 0 3px $black
+  z-index: 10
+  @media screen and (max-width: $tabletScreen)
+    bottom: $mediumMarginSize
+    right: unset
+    left: $mediumMarginSize
+    font-size: $textSmallSize
+    padding: $smallMarginSize*0.5 $mediumMarginSize
+  &:hover
+    background-color: $beige

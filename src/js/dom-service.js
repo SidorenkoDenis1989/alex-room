@@ -1,14 +1,24 @@
-import {CHECKOUT_ORDER_REVIEW_TITLE, OPENED_CHECKOUT_ORDER_REVIEW_TITLE} from "./text-constant";
+import {CHECKOUT_ORDER_REVIEW_TITLE} from "./text-constant";
 
 export class DOMService {
     static closeMiniCart() {
         document.querySelector(".minicart").classList.remove("minicart__active");
-        document.querySelector(".site-overlay").classList.remove("site-overlay__active");
     }
+
+    static closeMobileMenu() {
+        document.querySelector(".mobile-menu--wrapper").classList.remove("mobile-menu--wrapper__active");
+    }
+
     static toggleMiniCart() {
         document.querySelector(".minicart").classList.toggle("minicart__active");
         this.toggleOverlay();
     }
+
+    static toggleMobileMenu() {
+        document.querySelector(".mobile-menu--wrapper").classList.toggle("mobile-menu--wrapper__active");
+        this.toggleOverlay();
+    }
+
     static toggleOverlay() {
         document.querySelector(".site-overlay").classList.toggle("site-overlay__active");
     }
@@ -28,6 +38,12 @@ export class DOMService {
 
     static scrollPageTop() {
         document.querySelector("body").scrollTop = 0;
+    }
+
+    static closeSidebars(){
+        this.closeMobileMenu();
+        this.closeMiniCart();
+        document.querySelector(".site-overlay").classList.remove("site-overlay__active");
     }
 
     static closeOrderReview() {

@@ -11,17 +11,6 @@ import {AsyncHandler} from "./async-functions";
             });
         }
 
-        const miniCartToggler = document.querySelector(".minicart--toggler");
-        if (miniCartToggler) {
-            miniCartToggler.addEventListener("click", event => {
-                event.preventDefault();
-                DOMService.toggleMiniCart()
-            });
-        }
-        document.querySelector(".site-overlay").addEventListener("click", () => {
-            DOMService.closeMiniCart();
-        });
-
         const orderNoteTitle =  document.querySelector(".order-note__title");
         if (orderNoteTitle) {
             orderNoteTitle.addEventListener("click", event => {

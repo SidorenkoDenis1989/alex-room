@@ -6,7 +6,10 @@
 </div>
 <?php endif; ?>
     <div class="site-overlay"></div>
-<?php
+    <?php if (!is_page_template('templates/contacts-page.php')): ?>
+        <a href="/contacts" id="custom-order-button" >Custom order</a>
+    <?php
+    endif;
     if(!$is_home_template && !$is_checkout): ?>
     <footer id="footer" class="footer">
         <div class="container d-grid d-grid__column-3 d-grid__column-tss-1 align-items-center">

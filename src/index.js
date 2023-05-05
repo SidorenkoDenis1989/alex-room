@@ -12,9 +12,12 @@ import './css/thankyou.sass';
 import './css/contacts.sass';
 import './css/about-me.sass';
 import './css/login.sass';
+import './css/mobile-menu.sass'
 import './js/homepage';
 import './js/mini-cart';
 import './js/archive-product';
 import './js/single-product';
 import './js/checkout';
 import './js/login';
+import './js/mobile-menu';
+import './js/common-scripts';

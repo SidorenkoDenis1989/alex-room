@@ -17,7 +17,7 @@ function cart2checkout_redirect() {
     if ( is_account_page() && !is_user_logged_in() ) {
         global $wp;
         $request = explode( '/', $wp->request );
-        if ( end($request) == 'my-account') {
+        if ( end($request) == 'my-account' || in_array('customer-logout', $request)) {
             wp_redirect( "/login" );
             die;
         }
@@ -401,12 +401,12 @@ function remove_company_name( $fields ) {
 
     
 
-add_filter('woocommerce_get_breadcrumb', function ($crumbs) {
-    if (is_singular("product") || is_product_category()) {
-        array_splice($crumbs,1, 1);
-    }
-    return $crumbs;
-});
+//add_filter('woocommerce_get_breadcrumb', function ($crumbs) {
+//    if (is_singular("product") || is_product_category()) {
+//        array_splice($crumbs,1, 1);
+//    }
+//    return $crumbs;
+//});
 
 add_filter('woocommerce_account_menu_items', 'remove_my_account_tabs', 999);
 function remove_my_account_tabs($items) {

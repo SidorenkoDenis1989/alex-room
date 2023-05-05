@@ -8,6 +8,16 @@
       font-size: $textSmallSize
       width: 100%
       text-align: center
+  &-loop
+    &-category
+      &__title
+        text-align: center
+        padding: 0
+        color: $textGrey
+        font-size: $textSmallSize
+        margin-bottom: 0
+        mark
+          display: none
 ul.products
   width: 100%
   display: grid
@@ -49,9 +59,13 @@ ul.products
             padding: 0
             color: $textGrey
             font-size: $textSmallSize
+            margin-bottom: $smallMarginSize
   &:before
     display: none
 .product
+  &-category
+    img
+      margin-bottom: $smallMarginSize
   &--thumbnail
     position: relative
     z-index: 2
