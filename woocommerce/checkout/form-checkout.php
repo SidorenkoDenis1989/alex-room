@@ -35,7 +35,14 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                 <?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
                 <?php do_action( 'woocommerce_checkout_billing' ); ?>
                 <?php do_action( 'woocommerce_checkout_shipping' ); ?>
-                <?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
+                <div class="woocommerce-checkout-payment--wrapper" data-field="3">
+                    <?php
+                        do_action( 'woocommerce_checkout_after_customer_details' );
+                        if ( ! wp_doing_ajax() ) {
+                            do_action( 'woocommerce_review_order_after_payment' );
+                        }
+                    ?>
+                </div>
                 <div class="woocommerce-checkout--buttons">
                     <a href="#" class="woocommerce-checkout--button woocommerce-checkout--button__prev" data-button="1">
                         <?php echo __( 'Return', 'woocommerce' ) ?>
