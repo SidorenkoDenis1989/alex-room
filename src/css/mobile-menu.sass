@@ -1,0 +1,66 @@
+@import "colors"
+@import "sizes"
+@import "breakpoints"
+.mobile-menu
+  &--wrapper
+    z-index: 12
+    position: fixed
+    width: 540px
+    top: 0
+    bottom: 0
+    left: -540px
+    background-color: $white
+    transition: all 0.3s
+    box-sizing: border-box
+    padding: 20px 32px 32px 32px
+    display: flex
+    flex-direction: column
+    @media screen and (max-width: $tabletScreenSmall)
+      width: 100%
+      left: -100%
+      padding: 20px 15px 20px 15px
+    &__active
+      left: 0
+  &--header
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    width: 100%
+    padding-bottom: $marginSize
+    font-size: 28px
+    font-family: "Amiri", serif
+    border-bottom: 1px solid $borderColor
+    @media screen and (max-width: $tabletScreenSmall)
+      padding-bottom: $smallMarginSize*1.5
+  &--list
+    list-style: none
+    padding-left: 0
+    margin: $marginSize
+    border-bottom: 1px solid $borderColor
+    padding-bottom: $marginSize
+    text-align: center
+    width: 100%
+    @media screen and (max-width: $tabletScreenSmall)
+      margin: $smallMarginSize*1.5 0
+      padding-bottom: $smallMarginSize*1.5
+    li
+      margin-bottom: $smallMarginSize
+      &:last-child
+        margin-bottom: 0
+      a
+        list-style: none
+        font-size: $textSize
+        text-decoration: none
+        font-weight: 600
+  &--footer
+    ul
+      list-style: none
+      padding-left: 0
+      margin: $marginSize 0
+      display: flex
+      justify-content: center
+      align-items: center
+      gap: $marginSize
+      width: 100%
+      @media screen and (max-width: $tabletScreenSmall)
+        margin: $smallMarginSize*1.5 0

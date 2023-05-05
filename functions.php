@@ -69,6 +69,7 @@ require_once get_template_directory() . '/functions-woocommerce.php';
 register_nav_menus(
     array(
         'primary' 				=> esc_attr( 'Main menu' ),
+        'mobile' 				=> esc_attr( 'Mobile menu' ),
         'footer'  				=> esc_attr( 'Footer menu' ),
     )
 );
@@ -107,10 +108,10 @@ add_theme_support( 'custom-logo' );
 add_filter( 'wpcf7_autop_or_not', '__return_false' );
 
 function alex_room_scripts() {
-    wp_register_style( 'alex_room_styles', get_template_directory_uri() . '/dist/app.css', false, '1.0' );
+    wp_register_style( 'alex_room_styles', get_template_directory_uri() . '/dist/app.css', false, '1.1' );
     wp_enqueue_style( 'alex_room_styles' );
 
-    wp_register_script( 'alex_room_scripts', get_template_directory_uri() . '/dist/app.js', ["jquery" , "select2"], '1.0', true );
+    wp_register_script( 'alex_room_scripts', get_template_directory_uri() . '/dist/app.js', ["jquery" , "select2"], '1.1', true );
     wp_localize_script('alex_room_scripts', 'ajaxUrl', array('url' => admin_url('admin-ajax.php')));
     wp_enqueue_script( 'alex_room_scripts' );
 }

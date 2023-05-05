@@ -6,8 +6,8 @@
         <span class="title light-beige">
             Shopping cart (<?php require get_template_directory() . '/templates/template-parts/products-counter.php'; ?>)
         </span>
-        <a href="#" class="minicart--toggler">
-            <svg aria-hidden="true" focusable="false" role="presentation" class="icon feather-x" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+        <a href="#" class="sidebar--toggler">
+            <?php require get_template_directory() . '/templates/template-parts/icons/close-icon.php'; ?>
         </a>
     </div>
     <?php if($mini_cart_label): ?>
