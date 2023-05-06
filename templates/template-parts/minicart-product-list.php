@@ -56,8 +56,27 @@
                         ?>
                         <div class="woocommerce-mini-cart-item__attrs">
                             <ul>
-                                <?php foreach ($product_attrs as $attr_key => $attr_value): ?>
-                                    <li><?php echo __("Select", "woocommerce") . " " . wc_attribute_label($attr_key); ?>: <?php echo $attr_value; ?></li>
+                                <?php 
+                                    foreach ($product_attrs as $attr_key => $attr_value):
+                                        $value = $attr_value;
+
+                                        if (!is_string($attr_value)) {
+                                            $attr_options = $attr_value->get_data()['options'];
+                                            $terms = get_terms(
+                                                array(
+                                                    'taxonomy'    => $attr_key,
+                                                    'include'  => $attr_options,
+                                                )
+                                            );
+                                            $term_names = [];
+                                            foreach ($terms as $term) {
+                                                array_push($term_names, $term->name);   
+                                            } 
+                                            $value = join($term_names, ', ');
+                                        }
+
+                                ?>
+                                    <li><?php echo __("Select", "woocommerce") . " " . wc_attribute_label($attr_key); ?>: <?php echo $value; ?></li>
                                 <?php endforeach; ?>
                             </ul>
                         </div>

@@ -47,8 +47,26 @@ defined( 'ABSPATH' ) || exit;
         ?>
             <div class="checkout--products-item__attrs">
                 <ul>
-                    <?php foreach ($product_attrs as $attr_key => $attr_value): ?>
-                        <li><?php echo wc_attribute_label($attr_key); ?>: <?php echo $attr_value; ?></li>
+                <?php 
+                    foreach ($product_attrs as $attr_key => $attr_value):
+                        $term_names = [];
+                        if (!is_string($attr_value)) {
+                            $attr_options = $attr_value->get_data()['options'];
+                            $terms = get_terms(
+                                array(
+                                    'taxonomy'    => $attr_key,
+                                    'include'  => $attr_options,
+                                )
+                            );
+
+                            foreach ($terms as $term) {
+                                array_push($term_names, $term->name);   
+                            } 
+                        }
+
+                        $value = is_string($attr_value) ? $attr_value : join($term_names, ', '); 
+                ?>
+                        <li><?php echo wc_attribute_label($attr_key); ?>: <?php echo $value; ?></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
